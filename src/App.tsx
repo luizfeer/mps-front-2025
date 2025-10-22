@@ -5,8 +5,22 @@ function App() {
   const [scrollY, setScrollY] = useState(0);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const [animationTime, setAnimationTime] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isSafari, setIsSafari] = useState(false);
 
   useEffect(() => {
+    // Detectar mobile e Safari
+    const checkDevice = () => {
+      const userAgent = navigator.userAgent;
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+      const isSafariBrowser = /Safari/i.test(userAgent) && !/Chrome/i.test(userAgent);
+      
+      setIsMobile(isMobileDevice);
+      setIsSafari(isSafariBrowser);
+    };
+
+    checkDevice();
+
     const handleScroll = () => {
       setScrollY(window.scrollY);
 
@@ -76,8 +90,8 @@ function App() {
     <div className="relative min-h-screen overflow-x-hidden bg-gradient-to-b from-slate-950 via-cyan-950 to-blue-950">
       {/* Animated Sky Background with 3D Elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {/* Stars */}
-        {[...Array(60)].map((_, i) => (
+        {/* Stars - Desabilitadas no mobile e Safari */}
+        {!isMobile && !isSafari && [...Array(60)].map((_, i) => (
           <div
             key={`star-${i}`}
             className="absolute w-0.5 h-0.5 bg-white/40 rounded-full"
