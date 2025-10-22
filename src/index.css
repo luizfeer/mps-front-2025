@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Fundo preto para o navegador */
+html, body {
+  background-color: #000000;
+}
+
+/* Garantir que o body tenha fundo preto */
+body {
+  background-color: #000000 !important;
+}

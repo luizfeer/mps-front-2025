@@ -108,7 +108,7 @@ function App() {
           className="absolute top-20 left-1/4 w-56 h-56 rounded-full bg-gradient-to-br from-slate-200 to-gray-400 opacity-70 blur-sm"
           style={{
             transform: `translateY(${scrollY * 0.1}px) scale(${1 + Math.cos(scrollY * 0.001) * 0.15})`,
-            boxShadow: '0 0 80px 40px rgba(199, 199, 199, 0.4)'
+            boxShadow: '0 0 80px 40px rgba(255, 255, 255, 0.3)'
           }}
         />
 
@@ -141,7 +141,7 @@ function App() {
 
         {/* Decorative Element - Lower Right */}
         <div
-          className="absolute top-[1000px] right-20 w-52 h-52 rounded-full bg-gradient-to-br from-cyan-300/20 to-blue-400/20 blur-3xl"
+          className="absolute top-[1000px] right-20 w-52 h-52 rounded-full bg-gradient-to-br from-blue-300/30 to-purple-400/30 blur-3xl"
           style={{
             transform: `translateY(${scrollY * 0.18}px) scale(${1 + Math.sin(scrollY * 0.002) * 0.12})`
           }}
