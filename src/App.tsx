@@ -7,6 +7,7 @@ function App() {
   const [animationTime, setAnimationTime] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [isSafari, setIsSafari] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
     // Detectar mobile e Safari
@@ -14,6 +15,17 @@ function App() {
       const userAgent = navigator.userAgent;
       const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
       const isSafariBrowser = /Safari/i.test(userAgent) && !/Chrome/i.test(userAgent);
+      
+      // Detectar tela pequena
+      const isSmall = window.innerWidth <= 768;
+      setIsSmallScreen(isSmall);
+      
+      // Debug: mostrar no console
+      console.log('User Agent:', userAgent);
+      console.log('Is Mobile:', isMobileDevice);
+      console.log('Is Safari:', isSafariBrowser);
+      console.log('Is Small Screen:', isSmall);
+      console.log('Window Width:', window.innerWidth);
       
       setIsMobile(isMobileDevice);
       setIsSafari(isSafariBrowser);
@@ -41,13 +53,19 @@ function App() {
       setAnimationTime(Date.now());
     };
 
+    const handleResize = () => {
+      checkDevice();
+    };
+
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
     const animationInterval = setInterval(handleAnimation, 16); // 60fps
     handleScroll();
     handleAnimation();
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
       clearInterval(animationInterval);
     };
   }, []);
@@ -90,8 +108,8 @@ function App() {
     <div className="relative min-h-screen overflow-x-hidden bg-gradient-to-b from-slate-950 via-cyan-950 to-blue-950">
       {/* Animated Sky Background with 3D Elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {/* Stars - Desabilitadas no mobile e Safari */}
-        {!isMobile && !isSafari && [...Array(60)].map((_, i) => (
+        {/* Stars - Desabilitadas no mobile, Safari e telas pequenas */}
+        {!isMobile && !isSafari && !isSmallScreen && [...Array(60)].map((_, i) => (
           <div
             key={`star-${i}`}
             className="absolute w-0.5 h-0.5 bg-white/40 rounded-full"
@@ -224,7 +242,7 @@ function App() {
               voltado para quem deseja crescer em fé, pensamento e vida cristã
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-8 justify-center items-center flex-wrap">
+            <div className="flex flex-col sm:flex-row gap-8 justify-center items-center flex-wrap relative z-10">
               <div className="flex items-center gap-3 text-white/90 text-lg backdrop-blur-sm bg-white/10 px-6 py-3 rounded-full">
                 <Calendar className="text-white" size={24} />
                 <span className="font-medium">20 de novembro de 2025</span>
@@ -240,10 +258,12 @@ function App() {
             </div>
           </div>
 
-          <div className="absolute bottom-16 animate-bounce">
-            <div className="text-white/70 text-sm mb-1">Role para descobrir</div>
-            <div className="text-white text-2xl">↓</div>
-          </div>
+          {!isSmallScreen && (
+            <div className="absolute bottom-4 md:bottom-16 animate-bounce z-20">
+              <div className="text-white/70 text-sm mb-1">Role para descobrir</div>
+              <div className="text-white text-2xl">↓</div>
+            </div>
+          )}
         </section>
 
         {/* About Section */}
