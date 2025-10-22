@@ -436,7 +436,7 @@ function App() {
             </p>
 
               <div className="backdrop-blur-md bg-white/15 rounded-3xl p-10 border border-white/30 mb-16 inline-block shadow-2xl">
-                <div className="text-5xl md:text-6xl font-black text-white mb-2 drop-shadow">A partir de R$ 50,00</div>
+                <div className="text-5xl md:text-6xl font-black text-white mb-2 drop-shadow">R$ 55,00</div>
                 <div className="text-xl text-white/80 font-light mb-2">A inscrição contempla:</div>
                 <div className="text-lg text-white/90 font-light space-y-1">
                   <div>☕ Café na recepção</div>
