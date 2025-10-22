@@ -187,11 +187,11 @@ function App() {
         {/* Hero Section */}
         <section
           data-section="hero"
-          className={`min-h-screen flex flex-col items-center justify-center px-6 text-center transition-all duration-1000 ${
+          className={`min-h-screen flex flex-col items-center px-6 text-center transition-all duration-1000 ${
             visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <div className="max-w-full">
+          <div className="max-w-full top-0">
             <div className="mb-8 flex justify-center">
               <img 
                 src="/images/backgrounds/ENTREDEUSES.png" 
@@ -270,7 +270,7 @@ function App() {
           }`}
         >
           <div className="max-w-4xl w-full">
-            <h2 className="text-6xl md:text-8xl font-black text-center text-white mb-20 drop-shadow-lg">
+            <h2 className="text-4xl md:text-8xl font-black text-center text-white mb-20 drop-shadow-lg">
               CRONOGRAMA
             </h2>
 
@@ -343,7 +343,7 @@ function App() {
                 <div className="text-7xl font-black text-white/20 mb-4">5</div>
                 <h3 className="text-2xl font-bold text-white mb-4">Refeições Inclusas</h3>
                 <p className="text-white/80 leading-relaxed font-light">
-                  Almoço completo e coffee break inclusos no valor, para que você aproveite sem preocupações.
+                  Café na recepção, almoço completo no Salão Areado Hotel e café da tarde inclusos no valor, para que você aproveite sem preocupações.
                 </p>
               </div>
 
@@ -401,10 +401,18 @@ function App() {
               Vagas limitadas para garantir qualidade e proximidade.
             </p>
 
-            <div className="backdrop-blur-md bg-white/15 rounded-3xl p-10 border border-white/30 mb-16 inline-block shadow-2xl">
-              <div className="text-5xl md:text-6xl font-black text-white mb-2 drop-shadow">A partir de R$ 50,00</div>
-              <div className="text-xl text-white/80 font-light">Inclui almoço e café</div>
-            </div>
+              <div className="backdrop-blur-md bg-white/15 rounded-3xl p-10 border border-white/30 mb-16 inline-block shadow-2xl">
+                <div className="text-5xl md:text-6xl font-black text-white mb-2 drop-shadow">A partir de R$ 50,00</div>
+                <div className="text-xl text-white/80 font-light mb-2">A inscrição contempla:</div>
+                <div className="text-lg text-white/90 font-light space-y-1">
+                  <div>☕ Café na recepção</div>
+                  <div>🍽️ Almoço*</div>
+                  <div>☕ Café da tarde</div>
+                </div>
+                <div className="text-sm text-white/70 font-light mt-3 italic">
+                  *O almoço será servido no Salão Areado Hotel
+                </div>
+              </div>
 
             <button
               onClick={() => window.open('https://www.ingressofacil.online/eventos/mps-conference-entre-deuses', '_blank')}
